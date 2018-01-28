@@ -1,3 +1,29 @@
-<p>
-  users works!
-</p>
+<div class="row">
+  <div class="col-md-6">
+    <h2><i class="fa fa-users"></i> Users </h2>
+  </div>
+  <div class="col-md-6">
+    <h5 class="text-right text-secondary"> Friends you might know</h5>
+  </div>
+</div>
+<table *ngIf="users?.length > 0; else noUsers" class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>    
+      <th></th>    
+    </tr>
+  </thead>  
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.firstName }} {{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td><a routerLink="user/{{ user.id }}" class="btn btn-secondary btn-sm"><i class="fa fa-plus"></i>&nbsp;Details</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noUsers> 
+  <hr>
+  No users
+</ng-template>
