@@ -6,7 +6,6 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs/Observable';
 
 import { User } from '../models/User';
-import { access } from 'fs';
 
 @Injectable()
 export class UserService {
@@ -19,7 +18,7 @@ export class UserService {
     this.usersCollection = this.afs.collection('users', ref => ref.orderBy('birthday', 'asc'));
   }
 
-  getUsers(): Observable<user[]> {
+  getUsers(): Observable<User[]> {
     // get users with id
     this.users = this.usersCollection.snapshotChanges().map(changes => {
       return changes.map(action => {
